@@ -6,7 +6,7 @@ from tkinter import messagebox
 import tkinter as tk
 from tkinter import font as tkfont
 from pathlib import Path
-
+import webbrowser
 
 # Defining Paths
 img_path = Path("pix\calculator.png").resolve()
@@ -53,22 +53,22 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Binary Puzzle", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label = tk.Label(self, text="Binary Puzzle", bg="Black", fg="Yellow", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=30, ipady=5)
 
-        button1 = tk.Button(self, text="New Game",
+        button1 = tk.Button(self, text="New Game", bg="Gray",
                             command=lambda: controller.show_frame("NewGame"))
-        button2 = tk.Button(self, text="High Scores",
+        button2 = tk.Button(self, text="High Scores", bg="Gray",
                             command=lambda: controller.show_frame("HighScores"))
-        button3 = tk.Button(self, text="About",
+        button3 = tk.Button(self, text="About", bg="Gray",
                             command=lambda: controller.show_frame("About"))
-        button4 = tk.Button(self, text="Exit",
+        button4 = tk.Button(self, text="Exit", bg="Gray",
                             command=lambda: app.destroy())
 
-        button1.pack()
-        button2.pack()
-        button3.pack()
-        button4.pack()
+        button1.pack(fill="x", pady=5, ipady=20)
+        button2.pack(fill="x", pady=5, ipady=20)
+        button3.pack(fill="x", pady=5, ipady=20)
+        button4.pack(fill="x", pady=5, ipady=20)
 
 
 class NewGame(tk.Frame):
@@ -76,7 +76,7 @@ class NewGame(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
-        label = tk.Label(self, text="Let's Play!", font=controller.title_font)
+        label = tk.Label(self, text="Let's Play!", bg="Black", fg="Yellow", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
@@ -84,15 +84,30 @@ class NewGame(tk.Frame):
 
 
 class HighScores(tk.Frame):
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="High Scores", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+
+        label = tk.Label(self, text="High Scores", bg="Black", fg="Yellow", font=controller.title_font)
+        label.pack(side="top", fill="x", ipady=20)
+
+        # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Info
+        label2 = tk.Label(self, text="...", bg="White",
+                          font="TimesNewRoman 13 bold")
+        label2.pack(side="top", fill="x", pady=10)
+
+        # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Return Button
+        button = tk.Button(self, text="Return To Main Menu", bg="Gray", font="TimesNewRoman 20",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(expand=1, fill=tk.BOTH)
 
 
 class About(tk.Frame):
@@ -100,11 +115,33 @@ class About(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
-        label = tk.Label(self, text="About Us", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        label = tk.Label(self, text="About Us", bg="Black", fg="Yellow", font=controller.title_font)
+        label.pack(side="top", fill="x", ipady=20)
+
+        # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Info
+        def callback(event):
+            webbrowser.open_new(r"https://github.com/MohamadKh75/Binary_Puzzle")
+
+        label2 = tk.Label(self, text="\nMohamadKh75\n", bg="White",
+                          font="TimesNewRoman 13 bold")
+        label2.pack(side="top", fill="x", pady=10)
+        link = tk.Label(self, text="\nMy Github page!\n", bg="White", fg="blue",
+                        font="TimesNewRoman 13 italic", cursor="hand2")
+        link.pack(side="top", fill="x")
+        link.bind("<Button-1>", callback)
+
+        # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Return Button
+        button = tk.Button(self, text="Return To Main Menu", bg="Gray", font="TimesNewRoman 20",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(expand=1, fill=tk.BOTH)
 
 
 if __name__ == "__main__":

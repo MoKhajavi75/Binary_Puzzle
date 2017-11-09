@@ -107,3 +107,23 @@ class About(tk.Frame):
         button.pack()
 
 
+if __name__ == "__main__":
+    app = SampleApp()
+    app.title("Binary Puzzle")
+    app.iconbitmap(icon_path)
+
+    w = 600  # width for the Tk root
+    h = 450  # height for the Tk root
+
+    # get screen width and height
+    ws = app.winfo_screenwidth()  # width of the screen
+    hs = app.winfo_screenheight()  # height of the screen
+
+    # calculate x and y coordinates for the Tk root window
+    x = (ws / 2) - (w / 2)
+    y = (hs / 2) - (h / 2)
+
+    # set the dimensions of the screen
+    # and where it is placed
+    app.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    app.mainloop()

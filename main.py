@@ -48,3 +48,26 @@ class SampleApp(tk.Tk):
         frame.tkraise()
 
 
+class StartPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Binary Puzzle", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+
+        button1 = tk.Button(self, text="New Game",
+                            command=lambda: controller.show_frame("NewGame"))
+        button2 = tk.Button(self, text="High Scores",
+                            command=lambda: controller.show_frame("HighScores"))
+        button3 = tk.Button(self, text="About",
+                            command=lambda: controller.show_frame("About"))
+        button4 = tk.Button(self, text="Exit",
+                            command=lambda: app.destroy())
+
+        button1.pack()
+        button2.pack()
+        button3.pack()
+        button4.pack()
+
+

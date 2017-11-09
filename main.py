@@ -56,19 +56,19 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Binary Puzzle", bg="Black", fg="Yellow", font=controller.title_font)
         label.pack(side="top", fill="x", pady=30, ipady=5)
 
-        button1 = tk.Button(self, text="New Game", bg="Gray",
+        button1 = tk.Button(self, text="New Game", bg="Gray", font="TimesNewRoman 15",
                             command=lambda: controller.show_frame("NewGame"))
-        button2 = tk.Button(self, text="High Scores", bg="Gray",
+        button2 = tk.Button(self, text="High Scores", bg="Gray", font="TimesNewRoman 15",
                             command=lambda: controller.show_frame("HighScores"))
-        button3 = tk.Button(self, text="About", bg="Gray",
+        button3 = tk.Button(self, text="About", bg="Gray", font="TimesNewRoman 15",
                             command=lambda: controller.show_frame("About"))
-        button4 = tk.Button(self, text="Exit", bg="Gray",
+        button4 = tk.Button(self, text="Exit", bg="Gray", font="TimesNewRoman 15",
                             command=lambda: app.destroy())
 
-        button1.pack(fill="x", pady=5, ipady=20)
-        button2.pack(fill="x", pady=5, ipady=20)
-        button3.pack(fill="x", pady=5, ipady=20)
-        button4.pack(fill="x", pady=5, ipady=20)
+        button1.pack(fill="x", pady=5, ipady=15)
+        button2.pack(fill="x", pady=5, ipady=15)
+        button3.pack(fill="x", pady=5, ipady=15)
+        button4.pack(fill="x", pady=5, ipady=15)
 
 
 class NewGame(tk.Frame):

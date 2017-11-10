@@ -56,13 +56,13 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Binary Puzzle", bg="Black", fg="Yellow", font=controller.title_font)
         label.pack(side="top", fill="x", pady=30, ipady=5)
 
-        button1 = tk.Button(self, text="New Game", bg="Gray", font="TimesNewRoman 15",
+        button1 = tk.Button(self, text="New Game", bg="DarkGoldenrod1", font="TimesNewRoman 15",
                             command=lambda: controller.show_frame("NewGame"))
-        button2 = tk.Button(self, text="High Scores", bg="Gray", font="TimesNewRoman 15",
+        button2 = tk.Button(self, text="High Scores", bg="DarkGoldenrod2", font="TimesNewRoman 15",
                             command=lambda: controller.show_frame("HighScores"))
-        button3 = tk.Button(self, text="About", bg="Gray", font="TimesNewRoman 15",
+        button3 = tk.Button(self, text="About", bg="DarkGoldenrod3", font="TimesNewRoman 15",
                             command=lambda: controller.show_frame("About"))
-        button4 = tk.Button(self, text="Exit", bg="Gray", font="TimesNewRoman 15",
+        button4 = tk.Button(self, text="Exit", bg="DarkGoldenrod4", font="TimesNewRoman 15",
                             command=lambda: app.destroy())
 
         button1.pack(fill="x", pady=5, ipady=15)
@@ -197,7 +197,7 @@ class NewGame(tk.Frame):
         hr.pack(fill="x", pady=10)
 
         # Check Button
-        check_button = tk.Button(self, text="Check!", bg="Gray", font="TimesNewRoman 20",
+        check_button = tk.Button(self, text="Check!", bg="LightSkyBlue1", font="TimesNewRoman 20",
                            command=checkIt)
         check_button.pack(expand=1, fill=tk.BOTH)
 

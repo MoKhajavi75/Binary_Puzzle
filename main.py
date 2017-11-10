@@ -87,20 +87,66 @@ class NewGame(tk.Frame):
         table = tk.Frame(self, height=200, width=100, bg="White")
         table.pack(fill="x", padx=115, pady=10)
 
-        rows = 5
-        columns = 5
+        # User's Entries
+        rows = 4
+        columns = 4
         for i in range(rows):  # Rows
             for j in range(columns):  # Columns
-                b = tk.Entry(table, text="", width=10)
-                b.grid(row=i, column=j, padx=5, pady=5, sticky='SW')
-                b.grid_rowconfigure(0, weight=1)
-                b.grid_columnconfigure(0, weight=1)
 
-                if i != 4:
-                    if j != 4:
-                        b.insert(0, random.randint(0, 1))
+                e = tk.Entry(table, text="", width=10, justify='center')
+                e.grid(row=i, column=j, padx=5, pady=5)
+                e.grid_rowconfigure(0, weight=1)
+                e.grid_columnconfigure(0, weight=1)
+
+        # Function: Decimal 2 Binary
+        def toBin(number, index):
+            converted = [int(i) for i in '{0:04b}'.format(number)]
+
+            return converted[index]
+
+        # Column Answers - Row Answers
+        c_ans1 = tk.Entry(table, text="", width=10, justify='center')
+        c_ans1.grid(row=0, column=4, padx=5, pady=5)
+        c_ans1.insert(0, random.randint(1, 15))
+
+        c_ans2 = tk.Entry(table, text="", width=10, justify='center')
+        c_ans2.grid(row=1, column=4, padx=5, pady=5)
+        c_ans2.insert(0, random.randint(1, 15))
+
+        c_ans3 = tk.Entry(table, text="", width=10, justify='center')
+        c_ans3.grid(row=2, column=4, padx=5, pady=5)
+        c_ans3.insert(0, random.randint(1, 15))
+
+        c_ans4 = tk.Entry(table, text="", width=10, justify='center')
+        c_ans4.grid(row=3, column=4, padx=5, pady=5)
+        c_ans4.insert(0, random.randint(1, 15))
+
+        r_ans1 = tk.Entry(table, text="", width=10, justify='center')
+        r_ans1.grid(row=4, column=0, padx=5, pady=5)
+        r_ans1.insert(0, "")
+
+        r_ans2 = tk.Entry(table, text="", width=10, justify='center')
+        r_ans2.grid(row=4, column=1, padx=5, pady=5)
+        r_ans2.insert(0, "")
+
+        r_ans3 = tk.Entry(table, text="", width=10, justify='center')
+        r_ans3.grid(row=4, column=2, padx=5, pady=5)
+        r_ans3.insert(0, "")
+
+        r_ans4 = tk.Entry(table, text="", width=10, justify='center')
+        r_ans4.grid(row=4, column=3, padx=5, pady=5)
+        #r_ans4.insert(0, toBin(c_ans1))
 
         # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Check Button
+        button = tk.Button(self, text="Check!", bg="Gray", font="TimesNewRoman 20",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack(expand=1, fill=tk.BOTH)
+
+        # Just another horizontal line!
         hr = tk.Frame(self, height=5, width=600, bg="Black")
         hr.pack(fill="x", pady=10)
 

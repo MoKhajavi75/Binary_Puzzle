@@ -7,12 +7,16 @@ import tkinter as tk
 from tkinter import font as tkfont
 from pathlib import Path
 import webbrowser
+import random
 
 # Defining Paths
 img_path = Path("pix\calculator.png").resolve()
 icon_path = Path("pix\icon.ico").resolve()
 
 # Defining Variables
+Numbers = [random.randint(0, 1) for _ in range(16)]
+for x in Numbers:
+    print(Numbers[x])
 
 
 class SampleApp(tk.Tk):
@@ -73,14 +77,42 @@ class StartPage(tk.Frame):
 
 class NewGame(tk.Frame):
     def __init__(self, parent, controller):
+
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
         label = tk.Label(self, text="Let's Play!", bg="Black", fg="Yellow", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        label.pack(side="top", fill="x", ipady=20)
+
+        # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Table's Frame!
+        table = tk.Frame(self, height=200, width=100, bg="White")
+        table.pack(fill="x", padx=115, pady=10)
+
+        rows = 5
+        columns = 5
+        for i in range(rows):  # Rows
+            for j in range(columns):  # Columns
+                b = tk.Entry(table, text="", width=10)
+                b.grid(row=i, column=j, padx=5, pady=5, sticky='SW')
+                b.grid_rowconfigure(0, weight=1)
+                b.grid_columnconfigure(0, weight=1)
+
+                if i != 4:
+                    if j != 4:
+                        b.insert(0, random.randint(0, 1))
+
+        # Just a horizontal line!
+        hr = tk.Frame(self, height=5, width=600, bg="Black")
+        hr.pack(fill="x", pady=10)
+
+        # Return Button
+        button = tk.Button(self, text="Return To Main Menu", bg="Gray", font="TimesNewRoman 20",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(expand=1, fill=tk.BOTH)
 
 
 class HighScores(tk.Frame):

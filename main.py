@@ -8,6 +8,7 @@ from tkinter import font as tkfont
 from pathlib import Path
 import webbrowser
 import random
+import ast
 
 # Defining Paths
 img_path = Path("pix\calculator.png").resolve()
@@ -90,52 +91,77 @@ class NewGame(tk.Frame):
         # User's Entries
         rows = 4
         columns = 4
+        entries = []
         for i in range(rows):  # Rows
             for j in range(columns):  # Columns
-
                 e = tk.Entry(table, text="", width=10, justify='center')
                 e.grid(row=i, column=j, padx=5, pady=5)
+                e.insert(0, random.randint(0, 1))
                 e.grid_rowconfigure(0, weight=1)
                 e.grid_columnconfigure(0, weight=1)
+                entries.append(e)
 
-        # Function: Decimal 2 Binary
-        def toBin(number, index):
-            converted = [int(i) for i in '{0:04b}'.format(number)]
+        # Save real answers
+        real_ans = ""
+        for entry in entries:
+            real_ans += str(entry.get())
 
-            return converted[index]
+        print(real_ans)
+
+        # Function: Binary 2 Decimal
+        def toDec (number):
+            return int(number, 2)
+
+        # Check Button Function
+        def checkIt():
+            print("")
+            '''
+            if user_ans == real_ans:
+                print("WIN")
+            else:
+                print("Lose!")
+            '''
 
         # Column Answers - Row Answers
         c_ans1 = tk.Entry(table, text="", width=10, justify='center')
         c_ans1.grid(row=0, column=4, padx=5, pady=5)
-        c_ans1.insert(0, random.randint(1, 15))
+        ans_to_send = real_ans[:4]
+        c_ans1.insert(0, toDec(ans_to_send))
 
         c_ans2 = tk.Entry(table, text="", width=10, justify='center')
         c_ans2.grid(row=1, column=4, padx=5, pady=5)
-        c_ans2.insert(0, random.randint(1, 15))
+        ans_to_send = real_ans[4:8]
+        c_ans2.insert(0, toDec(ans_to_send))
 
         c_ans3 = tk.Entry(table, text="", width=10, justify='center')
         c_ans3.grid(row=2, column=4, padx=5, pady=5)
-        c_ans3.insert(0, random.randint(1, 15))
+        ans_to_send = real_ans[8:12]
+        c_ans3.insert(0, toDec(ans_to_send))
 
         c_ans4 = tk.Entry(table, text="", width=10, justify='center')
         c_ans4.grid(row=3, column=4, padx=5, pady=5)
-        c_ans4.insert(0, random.randint(1, 15))
+        ans_to_send = real_ans[12:16]
+        c_ans4.insert(0, toDec(ans_to_send))
 
         r_ans1 = tk.Entry(table, text="", width=10, justify='center')
         r_ans1.grid(row=4, column=0, padx=5, pady=5)
-        r_ans1.insert(0, "")
+        ans_to_send = real_ans[0] + real_ans[4] + real_ans[8] + real_ans[12]
+        r_ans1.insert(0, toDec(ans_to_send))
 
         r_ans2 = tk.Entry(table, text="", width=10, justify='center')
         r_ans2.grid(row=4, column=1, padx=5, pady=5)
-        r_ans2.insert(0, "")
+        ans_to_send = real_ans[1] + real_ans[5] + real_ans[9] + real_ans[13]
+        r_ans2.insert(0, toDec(ans_to_send))
 
         r_ans3 = tk.Entry(table, text="", width=10, justify='center')
         r_ans3.grid(row=4, column=2, padx=5, pady=5)
-        r_ans3.insert(0, "")
+        ans_to_send = real_ans[2] + real_ans[6] + real_ans[10] + real_ans[14]
+        r_ans3.insert(0, toDec(ans_to_send))
 
         r_ans4 = tk.Entry(table, text="", width=10, justify='center')
         r_ans4.grid(row=4, column=3, padx=5, pady=5)
-        #r_ans4.insert(0, toBin(c_ans1))
+        ans_to_send = real_ans[3] + real_ans[7] + real_ans[11] + real_ans[15]
+        r_ans4.insert(0, toDec(ans_to_send))
 
         # Just a horizontal line!
         hr = tk.Frame(self, height=5, width=600, bg="Black")
@@ -143,7 +169,7 @@ class NewGame(tk.Frame):
 
         # Check Button
         button = tk.Button(self, text="Check!", bg="Gray", font="TimesNewRoman 20",
-                           command=lambda: controller.show_frame("StartPage"))
+                           command=checkIt)
         button.pack(expand=1, fill=tk.BOTH)
 
         # Just another horizontal line!

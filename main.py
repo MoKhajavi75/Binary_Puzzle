@@ -13,11 +13,6 @@ import random
 img_path = Path("pix\calculator.png").resolve()
 icon_path = Path("pix\icon.ico").resolve()
 
-# Defining Variables
-Numbers = [random.randint(0, 1) for _ in range(16)]
-for x in Numbers:
-    print(Numbers[x])
-
 
 class SampleApp(tk.Tk):
     def __init__(self, *args, **kwargs):

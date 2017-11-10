@@ -106,21 +106,46 @@ class NewGame(tk.Frame):
         for entry in entries:
             real_ans += str(entry.get())
 
-        print(real_ans)
-
         # Function: Binary 2 Decimal
-        def toDec (number):
+        def toDec(number):
             return int(number, 2)
 
         # Check Button Function
         def checkIt():
-            print("")
-            '''
-            if user_ans == real_ans:
-                print("WIN")
+            user_ans = ""
+            for entry in entries:
+                user_ans += str(entry.get())
+
+            # If all Entries are filled
+            if len(user_ans) < 16:
+                messagebox.showerror("Error", "Fill All Entries!")
+
+            elif len(user_ans) > 16:
+                messagebox.showerror("Error", "Just Use 0 or 1!")
+
             else:
-                print("Lose!")
-            '''
+                # If all numbers are 0 OR 1
+                for char in user_ans:
+                    if char == '0':
+                        continue
+                    elif char == '1':
+                        continue
+                    else:
+                        messagebox.showerror("Error", "Just Use 0 or 1!")
+
+                # If user is correct :D
+                if user_ans == real_ans:
+                    messagebox.showinfo("Result", "You Win!")
+                    controller.show_frame("HighScores")
+
+                elif messagebox.askyesno("Result", "Try Again?"):
+                    pass
+
+                else:
+                    for entry in entries:
+                        entry.delete(0, 'end')
+
+                    controller.show_frame("StartPage")
 
         # Column Answers - Row Answers
         c_ans1 = tk.Entry(table, text="", width=10, justify='center')
@@ -163,14 +188,18 @@ class NewGame(tk.Frame):
         ans_to_send = real_ans[3] + real_ans[7] + real_ans[11] + real_ans[15]
         r_ans4.insert(0, toDec(ans_to_send))
 
+        # Let's Clear the real answers!
+        for entry in entries:
+            entry.delete(0, 'end')
+
         # Just a horizontal line!
         hr = tk.Frame(self, height=5, width=600, bg="Black")
         hr.pack(fill="x", pady=10)
 
         # Check Button
-        button = tk.Button(self, text="Check!", bg="Gray", font="TimesNewRoman 20",
+        check_button = tk.Button(self, text="Check!", bg="Gray", font="TimesNewRoman 20",
                            command=checkIt)
-        button.pack(expand=1, fill=tk.BOTH)
+        check_button.pack(expand=1, fill=tk.BOTH)
 
         # Just another horizontal line!
         hr = tk.Frame(self, height=5, width=600, bg="Black")

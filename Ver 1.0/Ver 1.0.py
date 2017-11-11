@@ -275,7 +275,7 @@ class About(tk.Frame):
 if __name__ == "__main__":
     app = SampleApp()
     app.title("Binary Puzzle")
-    app.iconbitmap(icon_path)
+    #app.iconbitmap(icon_path)
 
     w = 600  # width for the Tk root
     h = 450  # height for the Tk root

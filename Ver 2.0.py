@@ -11,7 +11,8 @@ import random
 import ast
 
 # Defining Paths
-img_path = Path("pix\calculator.png").resolve()
+on_path = Path("pix\on.png").resolve()
+off_path = Path("pix\off.png").resolve()
 icon_path = Path("pix\icon.ico").resolve()
 
 
@@ -92,14 +93,23 @@ class NewGame(tk.Frame):
         rows = 4
         columns = 4
         entries = []
+        photo = tk.PhotoImage(file=on_path)
+        v = tk.StringVar()
         for i in range(rows):  # Rows
             for j in range(columns):  # Columns
+                '''
                 e = tk.Entry(table, text="", width=10, justify='center')
                 e.grid(row=i, column=j, padx=5, pady=5)
                 e.insert(0, random.randint(0, 1))
                 e.grid_rowconfigure(0, weight=1)
                 e.grid_columnconfigure(0, weight=1)
                 entries.append(e)
+                '''
+
+                e = tk.Checkbutton(table, text="1", variable=v, indicatoron=0)
+                e.grid(row=i, column=j, padx=5, pady=5)
+                e.setvar(0, random.randint(0, 1))
+                entries.append(e.var.get())
 
         # Save real answers
         real_ans = ""
@@ -148,45 +158,45 @@ class NewGame(tk.Frame):
                     controller.show_frame("StartPage")
 
         # Column Answers - Row Answers
-        c_ans1 = tk.Entry(table, text="", width=10, justify='center')
+        c_ans1 = tk.Label(table, text="", width=10, justify='center')
         c_ans1.grid(row=0, column=4, padx=5, pady=5)
-        ans_to_send = real_ans[:4]
-        c_ans1.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[:4]
+        #c_ans1.insert(0, toDec(ans_to_send))
 
         c_ans2 = tk.Entry(table, text="", width=10, justify='center')
         c_ans2.grid(row=1, column=4, padx=5, pady=5)
-        ans_to_send = real_ans[4:8]
-        c_ans2.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[4:8]
+        #c_ans2.insert(0, toDec(ans_to_send))
 
         c_ans3 = tk.Entry(table, text="", width=10, justify='center')
         c_ans3.grid(row=2, column=4, padx=5, pady=5)
-        ans_to_send = real_ans[8:12]
-        c_ans3.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[8:12]
+        #c_ans3.insert(0, toDec(ans_to_send))
 
         c_ans4 = tk.Entry(table, text="", width=10, justify='center')
         c_ans4.grid(row=3, column=4, padx=5, pady=5)
-        ans_to_send = real_ans[12:16]
-        c_ans4.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[12:16]
+        #c_ans4.insert(0, toDec(ans_to_send))
 
         r_ans1 = tk.Entry(table, text="", width=10, justify='center')
         r_ans1.grid(row=4, column=0, padx=5, pady=5)
-        ans_to_send = real_ans[0] + real_ans[4] + real_ans[8] + real_ans[12]
-        r_ans1.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[0] + real_ans[4] + real_ans[8] + real_ans[12]
+        #r_ans1.insert(0, toDec(ans_to_send))
 
         r_ans2 = tk.Entry(table, text="", width=10, justify='center')
         r_ans2.grid(row=4, column=1, padx=5, pady=5)
-        ans_to_send = real_ans[1] + real_ans[5] + real_ans[9] + real_ans[13]
-        r_ans2.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[1] + real_ans[5] + real_ans[9] + real_ans[13]
+        #r_ans2.insert(0, toDec(ans_to_send))
 
         r_ans3 = tk.Entry(table, text="", width=10, justify='center')
         r_ans3.grid(row=4, column=2, padx=5, pady=5)
-        ans_to_send = real_ans[2] + real_ans[6] + real_ans[10] + real_ans[14]
-        r_ans3.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[2] + real_ans[6] + real_ans[10] + real_ans[14]
+        #r_ans3.insert(0, toDec(ans_to_send))
 
         r_ans4 = tk.Entry(table, text="", width=10, justify='center')
         r_ans4.grid(row=4, column=3, padx=5, pady=5)
-        ans_to_send = real_ans[3] + real_ans[7] + real_ans[11] + real_ans[15]
-        r_ans4.insert(0, toDec(ans_to_send))
+        #ans_to_send = real_ans[3] + real_ans[7] + real_ans[11] + real_ans[15]
+        #r_ans4.insert(0, toDec(ans_to_send))
 
         # Let's Clear the real answers!
         for entry in entries:
